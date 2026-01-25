@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+}
+
+/* Tailwind v4 class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light Mode - Crisp & Vibrant */
+  --background: #f8fafc; /* Slate 50 - Softer than pure white */
+  --foreground: #020617; /* Slate 950 - High contrast text */
+  --primary: #2563eb; /* Blue 600 - Vivid */
+  --secondary: #7c3aed; /* Violet 600 - Dynamic */
+  --accent: #06b6d4; /* Cyan 500 */
+  
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(37, 99, 235, 0.1); /* Subtle blue tint */
+  
+  --navbar-bg: rgba(255, 255, 255, 0.85); /* More opacity for Navbar */
+}
+
+.dark {
+  /* Dark Mode - Deep Space & Electric */
+  --background: #030014;
+  --foreground: #f8fafc;
+  --primary: #6366f1; /* Indigo 500 */
+  --secondary: #a855f7; /* Purple 500 */
+  --accent: #22d3ee; /* Cyan 400 */
+
+  --card-bg: rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.1);
+  
+  --navbar-bg: rgba(3, 0, 20, 0.7);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+}
+
+.glass-strong {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* Shiny Button */
+.btn-shiny {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-shiny::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn-shiny:hover::before {
+  left: 100%;
+}
+
+.btn-shiny:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px var(--primary);
+}
+
+/* Global Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

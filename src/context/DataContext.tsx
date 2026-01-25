@@ -1,0 +1,127 @@
+"use client";
+
+import { API_URL } from "@/config";
+import Logger from "@/lib/logger";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+
+interface PersonalData {
+  email: string;
+  phone: string;
+  address: string;
+  instagram?: string;
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
+interface Plan {
+  id: number;
+  name: string;
+  slug: string;
+  tagline: string;
+  tagline_en?: string;
+  description: string;
+  description_en?: string;
+  detailedDescription: string;
+  detailedDescription_en?: string;
+  price: number;
+  features: string[];
+  recommended: boolean;
+  whatYouGet?: any[];
+  useCases?: string[];
+  management?: any[];
+  considerations?: string[];
+  recommendations?: string[];
+  demos?: any[];
+}
+
+interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  tagline: string;
+  tagline_en?: string;
+  description: string;
+  description_en?: string;
+  detailedDescription: string;
+  detailedDescription_en?: string;
+  imageUrl: string;
+  category: string;
+  url?: string;
+  tags?: string[];
+  features?: string[];
+  technologies?: string[];
+  client?: string;
+  completionDate?: string;
+  testimonial?: any;
+  gallery?: string[];
+}
+
+interface DataContextType {
+  personalData: PersonalData | null;
+  plans: Plan[];
+  projects: Project[];
+  loading: boolean;
+  refreshData: () => Promise<void>;
+}
+
+const DataContext = createContext<DataContextType | undefined>(undefined);
+
+export function DataProvider({ children }: { children: ReactNode }) {
+  const [personalData, setPersonalData] = useState<PersonalData | null>(null);
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const results = await Promise.allSettled([
+        fetch(`${API_URL}/api/settings/personal-data`).then(res => res.json()),
+        fetch(`${API_URL}/api/content/plans`).then(res => res.json()),
+        fetch(`${API_URL}/api/content/example-projects`).then(res => res.json())
+      ]);
+
+      if (results[0].status === 'fulfilled') {
+        setPersonalData(results[0].value);
+      } else {
+        Logger.error("Failed to fetch personal data", results[0].reason);
+      }
+
+      if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
+        setPlans(results[1].value);
+      } else {
+         Logger.warn("Failed to fetch plans or invalid format", results[1].status === 'rejected' ? results[1].reason : results[1].value);
+      }
+
+      if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) {
+        setProjects(results[2].value);
+      } else {
+         Logger.warn("Failed to fetch projects or invalid format", results[2].status === 'rejected' ? results[2].reason : results[2].value);
+      }
+
+    } catch (error) {
+      Logger.error("Error confirming global data fetch", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <DataContext.Provider value={{ personalData, plans, projects, loading, refreshData: fetchData }}>
+      {children}
+    </DataContext.Provider>
+  );
+}
+
+export function useData() {
+  const context = useContext(DataContext);
+  if (context === undefined) {
+    throw new Error("useData must be used within a DataProvider");
+  }
+  return context;
+}

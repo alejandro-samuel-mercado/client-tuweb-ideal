@@ -1,0 +1,421 @@
+{
+  "Navbar": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "login": "Login",
+    "dashboard": "Mi Dashboard",
+    "logout": "Cerrar Sesión"
+  },
+  "Hero": {
+    "tagline": "🚀 Despega tu negocio hoy",
+    "title_start": "Tu Sitio Web",
+    "title_highlight": "Profesional",
+    "title_end": "En Tiempo Récord",
+    "subtitle": "Creamos tu presencia digital con la tecnología más avanzada y diseños impactantes. Calidad premium, velocidad inigualable.",
+    "cta_plans": "Ver Planes",
+    "cta_examples": "Ver Ejemplos",
+    "features": {
+        "delivery": "Entrega Rápida",
+        "design": "Diseño Premium",
+        "responsive": "100% Responsive",
+        "secure": "Seguro (HTTPS)"
+    }
+  },
+  "Common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "retry": "Reintentar"
+  },
+  "Importance": {
+    "badge": "🚀 Potencia Tu Negocio",
+    "title": "No Tener Sitio Web\nTe Está Costando Dinero",
+    "description": "En la era digital, si no estás en internet, no existes. Un sitio web profesional no es un gasto, es la inversión más rentable para tu marca.",
+    "cards": {
+      "revenue": {
+        "title": "Aumenta tus Ingresos",
+        "desc": "Empresas con web crecen 40% más rápido."
+      },
+      "clients": {
+        "title": "Atrae Clientes Ideales",
+        "desc": "Posiciónate como líder en tu industria."
+      }
+    },
+    "benefits": {
+      "credibility": {
+        "title": "Credibilidad Instantánea",
+        "desc": "El 84% de los consumidores cree que una empresa con sitio web es más creíble que una que solo tiene redes sociales."
+      },
+      "sales": {
+        "title": "Ventas 24/7",
+        "desc": "Tu negocio nunca cierra. Recibe consultas y ventas mientras duermes, sin pagar horas extras."
+      },
+      "global": {
+        "title": "Alcance Global",
+        "desc": "No te limites a tu barrio. Con un sitio web, tu mercado es el mundo entero."
+      }
+    }
+  },
+  "Plans": {
+    "title_start": "Planes Para",
+    "title_highlight": "Cada Necesidad",
+    "subtitle": "Desde sitios simples hasta plataformas complejas.\nTodos nuestros planes incluyen hosting, SSL y soporte profesional.",
+    "popular_badge": "⭐ Más Popular",
+    "view_details": "Ver Detalles",
+    "features_tooltip": {
+      "responsive": "Tu sitio se verá perfecto en móviles, tablets y computadoras.",
+      "hosting": "Alojamiento web seguro y rápido incluido en tu plan.",
+      "ssl": "Certificado de seguridad para proteger los datos de tus usuarios (candadito verde).",
+      "seo": "Optimización para aparecer en los primeros resultados de Google.",
+      "dominio": "Tu nombre en internet (ej: tuempresa.com).",
+      "soporte": "Ayuda técnica prioritaria cuando la necesites.",
+      "default": "Característica incluida en este plan para potenciar tu web."
+    },
+    "cta_section": {
+      "title": "¿Tienes dudas?",
+      "subtitle": "Elige la opción que más te interese",
+      "chat_btn": "Asistente virtual",
+      "info_btn": "Sitio de información"
+    }
+  },
+  "Reviews": {
+    "title_start": "Lo que dicen",
+    "title_highlight": "nuestros clientes",
+    "subtitle": "Historias de éxito de empresas y emprendedores que confiaron en nosotros para lograr sus objetivos digitales.",
+    "leave_review_btn": "Dejar una Reseña",
+    "verified_client": "Cliente Verificado",
+    "modal": {
+      "title": "Comparte tu experiencia",
+      "success_msg": "¡Gracias por tu reseña!",
+      "moderation_msg": "Se publicará después de ser moderada.",
+      "name_label": "Nombre",
+      "rating_label": "Calificación",
+      "comment_label": "Comentario",
+      "submit_btn": "Enviar Reseña",
+      "submitting_btn": "Enviando..."
+    }
+  },
+  "Footer": {
+    "brand_desc": "Transformamos ideas en experiencias digitales excepcionales. Diseño web premium y desarrollo a medida para potenciar tu negocio.",
+    "links_title": "Enlaces Rápidos",
+    "legal_title": "Legal",
+    "contact_title": "Contacto",
+    "rights": "Todos los derechos reservados.",
+    "made_with": "Hecho con",
+    "for_entrepreneurs": "para emprendedores",
+    "links": {
+      "plans": "Planes y Precios",
+      "about": "Sobre Nosotros",
+      "clients": "Área de Clientes",
+      "terms": "Términos y Condiciones",
+      "privacy": "Política de Privacidad",
+      "cookies": "Política de Cookies"
+    }
+  },
+  "Examples": {
+    "title_start": "Nuestros",
+    "title_highlight": "Trabajos",
+    "subtitle": "Explora ejemplos reales de sitios web que hemos creado para diferentes industrias",
+    "categories": {
+      "all": "Todos"
+    },
+    "view_site": "VER SITIO"
+  },
+  "About": {
+    "title_start": "Sobre",
+    "title_highlight": "Nosotros",
+    "description_1": "Somos un equipo apasionado de diseñadores y desarrolladores especializados en crear sitios web que impulsan negocios. Con más de 5 años de experiencia, hemos ayudado a más de 150 empresas a establecer su presencia online profesional.",
+    "description_2": "Creemos que cada negocio, sin importar su tamaño, merece un sitio web profesional sin pagar fortunas. Por eso creamos planes accesibles con todo incluido: diseño, desarrollo, hosting, mantenimiento y soporte.",
+    "stats": {
+      "sites": { "number": "150+", "label": "Sitios Creados" },
+      "clients": { "number": "98%", "label": "Clientes Satisfechos" },
+      "time": { "number": "2-4 sem", "label": "Tiempo Entrega" },
+      "support": { "number": "24/7", "label": "Soporte Disponible" }
+    },
+    "why_us": {
+      "title_start": "¿Por Qué",
+      "title_highlight": "Elegirnos?",
+      "reasons": {
+        "delivery": { "title": "Entrega Rápida", "desc": "Tu sitio web listo en 2-4 semanas. No esperarás meses." },
+        "design": { "title": "Diseño Premium", "desc": "Diseños modernos que destacan, no plantillas genéricas." },
+        "all_included": { "title": "Todo Incluido", "desc": "Hosting, SSL, mantenimiento y soporte. Sin sorpresas." },
+        "mobile": { "title": "Mobile First", "desc": "Perfectos en móviles, donde está el 70% de tus clientes." },
+        "training": { "title": "Te Capacitamos", "desc": "Aprende a gestionar tu sitio. No dependas de nadie." },
+        "support": { "title": "Soporte Real", "desc": "Personas reales que responden. No chatbots." }
+      }
+    }
+  },
+  "Education": {
+    "title_start": "Aprende Sobre",
+    "title_highlight": "Tu Sitio Web",
+    "subtitle": "Queremos que entiendas lo que compras. Aquí te explicamos los conceptos clave de forma simple.",
+    "process_title": "¿Cómo es el proceso?",
+    "steps": {
+      "planning": { "title": "1. Planificación", "desc": "Definimos objetivos, estructura y diseño visual de tu sitio." },
+      "development": { "title": "2. Desarrollo", "desc": "Construimos tu sitio con las últimas tecnologías y optimización." },
+      "review": { "title": "3. Revisión", "desc": "Te mostramos el avance para que nos des tu feedback." },
+      "launch": { "title": "4. Lanzamiento", "desc": "Publicamos tu sitio y te capacitamos para usarlo." }
+    },
+    "concepts_title": "Conceptos Básicos",
+    "concepts": {
+      "hosting": { "title": "Hosting", "desc": "Es el 'terreno' donde vive tu sitio web. Nosotros nos encargamos de alquilarlo y mantenerlo seguro para ti." },
+      "domain": { "title": "Dominio", "desc": "Es tu dirección en internet (ej: tuempresa.com). Te ayudamos a elegir el mejor nombre." },
+      "ssl": { "title": "SSL", "desc": "El candado de seguridad que protege los datos de tus clientes. Indispensable para la confianza." },
+      "responsive": { "title": "Responsive", "desc": "Tecnología que hace que tu sitio se adapte perfectamente a celulares, tablets y computadoras." }
+    }
+  },
+  "Contact": {
+    "title_start": "Hablemos de",
+    "title_highlight": "Tu Proyecto",
+    "subtitle": "¿Listo para comenzar? Contáctanos y recibe una respuesta en menos de 24 horas.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Email",
+      "phone": "Teléfono (Opcional)",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje",
+      "submitting": "Enviando..."
+    },
+    "info": {
+      "whatsapp": "WhatsApp Directo",
+      "email": "Email",
+      "location": "Ubicación"
+    },
+    "modal": {
+      "success_title": "¡Mensaje Enviado!",
+      "success_desc": "Gracias por contactarnos. Te responderemos a la brevedad.",
+      "close": "Cerrar"
+    }
+  },
+  "Legal": {
+    "Terms": {
+      "title": "Términos y Condiciones",
+      "intro": "Bienvenido a TuWebIdeal. Al acceder a nuestro sitio web y utilizar nuestros servicios, aceptas cumplir con los siguientes términos y condiciones.",
+      "sections": {
+        "services": { "title": "1. Servicios", "content": "Ofrecemos servicios de diseño y desarrollo web, optimización SEO y mantenimiento. Nos reservamos el derecho de modificar o discontinuar cualquier servicio en cualquier momento." },
+        "intellectual_property": { "title": "2. Propiedad Intelectual", "content": "Todo el contenido, diseño y código desarrollado por TuWebIdeal es propiedad nuestra hasta que se complete el pago total del servicio acordado, momento en el cual se transfieren los derechos al cliente, salvo componentes de software de terceros." },
+        "payments": { "title": "3. Pagos y Reembolsos", "content": "Los pagos se realizan según lo acordado en el presupuesto. No se ofrecen reembolsos una vez iniciado el trabajo, salvo incumplimiento grave por nuestra parte." },
+        "liability": { "title": "4. Limitación de Responsabilidad", "content": "No nos hacemos responsables por daños indirectos, pérdida de datos o interrupciones del servicio causadas por terceros (hosting, proveedores de dominio, etc.)." }
+      }
+    },
+    "Cookies": {
+      "title": "Política de Cookies",
+      "intro": "Este sitio web utiliza cookies para mejorar la experiencia del usuario. A continuación explicamos qué son y cómo las utilizamos.",
+      "sections": {
+        "what_are": { "title": "¿Qué son las cookies?", "content": "Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Se utilizan ampliamente para hacer que los sitios web funcionen de manera más eficiente." },
+        "what_use": { "title": "¿Qué cookies utilizamos?", "content_1": "Actualmente, este sitio web utiliza cookies técnicas esenciales para el funcionamiento del sitio, como mantener tu sesión iniciada (si aplica) o recordar tus preferencias de tema (modo claro/oscuro).", "content_2": "No utilizamos cookies de terceros para rastreo publicitario ni vendemos tus datos de navegación." },
+        "control": { "title": "Control de Cookies", "content": "Puedes controlar y/o eliminar las cookies según desees. Puedes borrar todas las cookies que ya están en tu computadora y puedes configurar la mayoría de los navegadores para evitar que se coloquen." }
+      }
+    },
+    "Privacy": {
+      "title": "Política de Privacidad",
+      "intro": "En TuWebIdeal, nos tomamos muy en serio tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal.",
+      "sections": {
+        "collection": { "title": "1. Información que Recopilamos", "content": "Recopilamos información que nos proporcionas voluntariamente, como tu nombre, correo electrónico y número de teléfono al utilizar nuestro formulario de contacto o contratar nuestros servicios." },
+        "usage": { "title": "2. Uso de la Información", "content": "Utilizamos tu información para:", "list": { "1": "Proveer y mantener nuestros servicios.", "2": "Contactarte para responder a tus consultas.", "3": "Enviar información relevante sobre tu proyecto." } },
+        "protection": { "title": "3. Protección de Datos", "content": "Implementamos medidas de seguridad para proteger tu información personal contra acceso no autorizado, alteración o divulgación." },
+        "sharing": { "title": "4. Compartir Información", "content": "No vendemos ni compartimos tu información personal con terceros, excepto cuando sea necesario para proveer el servicio (ej. proveedores de hosting) o por requerimiento legal." }
+      }
+    }
+  },
+  "Auth": {
+    "Login": {
+      "welcome_title": "Bienvenido de nuevo",
+      "welcome_subtitle": "Accede a tu panel de control y gestiona tus proyectos",
+      "email_label": "Email",
+      "password_label": "Contraseña",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "submit_btn": "Iniciar Sesión",
+      "or_continue": "O continúa con",
+      "no_account": "¿No tienes cuenta?",
+      "register_link": "Regístrate gratis"
+    },
+    "Register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a TuWebIdeal y comienza tu proyecto",
+      "name_label": "Nombre Completo",
+      "email_label": "Email",
+      "phone_label": "Teléfono",
+      "country_label": "País",
+      "password_label": "Contraseña",
+      "confirm_password_label": "Confirmar Contraseña",
+      "submit_btn": "Registrarse",
+      "or_register": "O regístrate con",
+      "have_account": "¿Ya tienes cuenta?",
+      "login_link": "Inicia Sesión",
+      "passwords_mismatch": "Las contraseñas no coinciden"
+    }
+  },
+  "Hire": {
+    "title": "Configura tu Plan",
+    "subtitle": "Completa este formulario para que podamos construir el sitio de tus sueños.",
+    "steps": {
+      "business": "1. Negocio",
+      "design": "2. Diseño",
+      "functionality": "3. Funcionalidad",
+      "confirm": "4. Confirmar"
+    },
+    "business_step": {
+      "title": "Sobre tu Negocio",
+      "name_label": "Nombre del Negocio / Proyecto",
+      "industry_label": "Industria / Sector",
+      "audience_label": "Público Objetivo",
+      "audience_placeholder": "Ej: Jóvenes de 18-25 años interesados en fitness",
+      "desc_label": "Descripción Breve",
+      "desc_placeholder": "¿Qué hace tu negocio? ¿Cuál es su propuesta de valor?"
+    },
+    "design_step": {
+      "title": "Preferencias de Diseño",
+      "style_label": "Estilo Visual",
+      "style_placeholder": "Ej: Minimalista, Moderno, Corporativo, Colorido...",
+      "colors_label": "Colores de Marca",
+      "colors_placeholder": "Ej: Azul y Blanco, o códigos Hex",
+      "reference_label": "Sitios de Referencia (Inspiración)",
+      "reference_placeholder": "Pega aquí enlaces de sitios que te gusten",
+      "images_label": "Imágenes de Referencia (Opcional)",
+      "images_help": "Sube hasta 5 imágenes de diseños que te inspiren",
+      "select_images": "Seleccionar Imágenes"
+    },
+    "func_step": {
+      "title": "Funcionalidad y Contenido",
+      "pages_label": "Páginas Necesarias",
+      "pages_placeholder": "Ej: Inicio, Nosotros, Servicios, Contacto...",
+      "func_label": "Funcionalidades Específicas",
+      "func_placeholder": "Ej: Formulario de reservas, Chat en vivo, Integración con Instagram...",
+      "content_label": "¿Tienes el contenido (textos/imágenes) listo?",
+      "content_options": {
+        "yes": "Sí, tengo todo listo",
+        "partial": "Tengo algunas cosas",
+        "no": "No, necesito ayuda con eso"
+      }
+    },
+    "confirm_step": {
+      "title": "Confirmación",
+      "summary_title": "Resumen del Pedido",
+      "plan_label": "Plan:",
+      "business_label": "Negocio:",
+      "industry_label": "Industria:",
+      "disclaimer": "Al enviar este formulario, se creará un pedido en tu cuenta. Nuestro equipo revisará la información y se pondrá en contacto contigo para confirmar los detalles y proceder con el pago.",
+      "discount_label": "¿Tienes un código de descuento?",
+      "discount_placeholder": "Ingresa tu código aquí"
+    },
+    "alerts": {
+      "max_images": "Máximo 5 imágenes de referencia",
+      "complete_fields": "Por favor completa todos los campos antes de continuar",
+      "error_create": "Hubo un error al crear el pedido. Por favor intenta de nuevo."
+    },
+    "buttons": {
+      "back": "Atrás",
+      "next": "Siguiente",
+      "submit": "Enviar Solicitud"
+    },
+    "loading": "Plan no encontrado"
+  },
+  "Dashboard": {
+    "welcome": "Hola, {name}",
+    "subtitle": "Aquí tienes el resumen de tus proyectos.",
+    "new_project": "Iniciar Nuevo Proyecto",
+    "stats": {
+      "total": "Total Pedidos",
+      "in_progress": "En Progreso",
+      "finished": "Finalizados"
+    },
+    "projects": {
+      "title": "Mis Proyectos",
+      "empty": {
+        "title": "Aún no tienes proyectos",
+        "desc": "Elige un plan y comencemos a construir tu presencia digital.",
+        "link": "Ver Planes Disponibles"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "accepted": "Aceptado",
+        "in_progress": "En Desarrollo",
+        "finished": "Finalizado"
+      },
+      "details": "Ver Detalles",
+      "order_prefix": "Pedido #"
+    },
+    "sidebar": {
+      "quick_actions": "Acciones Rápidas",
+      "new_order": "Nuevo Pedido",
+      "contact_support": "Contactar Soporte",
+      "help_title": "¿Necesitas ayuda?",
+      "help_desc": "Nuestro equipo está disponible para resolver tus dudas sobre el estado de tu proyecto.",
+      "help_link": "Ir al Centro de Ayuda"
+    }
+  },
+  "PlanDetails": {
+    "not_found": {
+      "title": "Plan No Encontrado"
+    },
+    "breadcrumb": "Planes",
+    "popular": "Más Popular",
+    "price_suffix": "USD / pago único",
+    "buttons": {
+      "hire": "Contratar Ahora",
+      "compare": "Comparar Planes"
+    },
+    "includes_title": "Incluye todo lo necesario:",
+    "what_you_get_title": "Lo que obtienes con el Plan {name}",
+    "ideal_for": "Ideal para...",
+    "management": "Gestión del Sitio",
+    "recommendations": "Recomendaciones",
+    "considerations": "A tener en cuenta",
+    "cta": {
+      "title": "¿Listo para empezar?",
+      "button": "Contratar Plan {name}",
+      "text": "¿Tienes dudas?"
+    }
+  },
+  "OrderDetails": {
+    "title_prefix": "Pedido #",
+    "plan_prefix": "Plan",
+    "payment": {
+      "title": "Próximo Paso: Pago y Activación",
+      "desc": "Tu pedido ha sido aceptado y estamos listos para comenzar. Para proceder, por favor comunícate con nosotros para coordinar el pago de forma personalizada.",
+      "chat_button": "Hablar por el Chat",
+      "whatsapp_button": "WhatsApp Directo",
+      "chat_template": "Hola, quiero coordinar el pago de mi pedido #"
+    },
+    "delivery": {
+      "label": "Fecha Estimada de Entrega"
+    },
+    "timeline": {
+      "title": "Estado del Proyecto",
+      "status": {
+        "completed": "Completado",
+        "current": "En proceso",
+        "pending": "Pendiente"
+      }
+    },
+    "finished": {
+      "title": "¡Proyecto Finalizado!",
+      "default_name": "Tu Sitio Web",
+      "default_desc": "Tu proyecto ha sido completado exitosamente. A continuación encontrarás todos los accesos y documentación necesaria.",
+      "visit_site": {
+        "title": "Ver Sitio Web",
+        "desc": "Visitar versión en vivo"
+      },
+      "admin_panel": {
+        "title": "Panel de Admin",
+        "desc": "Gestionar contenido"
+      },
+      "credentials": {
+        "title": "Credenciales de Acceso",
+        "user": "Usuario",
+        "password": "Contraseña"
+      },
+      "documentation": {
+        "title": "Manual de Usuario",
+        "desc": "Documentación PDF"
+      }
+    },
+    "chat": {
+      "title": "Chat con Soporte",
+      "subtitle": "Estamos aquí para ayudarte",
+      "placeholder": "Escribe un mensaje..."
+    }
+  }
+}
