@@ -1,26 +1,13 @@
 "use client";
 
-import { API_URL } from "@/config";
 import { useChat } from "@/context/ChatContext";
-import Logger from "@/lib/logger";
+import { Plan, plans as plansData } from "@/data/plans";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaCheckCircle, FaInfoCircle, FaRobot } from "react-icons/fa";
 
-interface Plan {
-  id: number;
-  name: string;
-  slug: string;
-  tagline: string;
-  tagline_en?: string;
-  description: string;
-  description_en?: string;
-  price: number;
-  features: string[];
-  popular: boolean;
-}
 
 export default function Plans() {
   const { openChatWithIntent } = useChat();
@@ -31,21 +18,9 @@ export default function Plans() {
   const locale = useLocale();
 
   useEffect(() => {
-    fetch(`${API_URL}/api/content/plans`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setPlans(data);
-        } else {
-          setPlans([]);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        Logger.error("Error fetching plans:", err);
-        setPlans([]);
-        setLoading(false);
-      });
+    // Simulating delay for smooth hydration
+    setPlans(plansData);
+    setLoading(false);
   }, []);
 
   const getFeatureDescription = (feature: string) => {

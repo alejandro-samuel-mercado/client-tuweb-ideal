@@ -1,6 +1,7 @@
 "use client";
 
 import { API_URL } from "@/config";
+import { Plan, plans as plansData } from "@/data/plans";
 import Logger from "@/lib/logger";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
@@ -14,26 +15,6 @@ interface PersonalData {
   twitter?: string;
 }
 
-interface Plan {
-  id: number;
-  name: string;
-  slug: string;
-  tagline: string;
-  tagline_en?: string;
-  description: string;
-  description_en?: string;
-  detailedDescription: string;
-  detailedDescription_en?: string;
-  price: number;
-  features: string[];
-  recommended: boolean;
-  whatYouGet?: any[];
-  useCases?: string[];
-  management?: any[];
-  considerations?: string[];
-  recommendations?: string[];
-  demos?: any[];
-}
 
 interface Project {
   id: number;
@@ -78,7 +59,6 @@ export function DataProvider({ children }: { children: ReactNode }) {
     try {
       const results = await Promise.allSettled([
         fetch(`${API_URL}/api/settings/personal-data`).then(res => res.json()),
-        fetch(`${API_URL}/api/content/plans`).then(res => res.json()),
         fetch(`${API_URL}/api/content/example-projects`).then(res => res.json())
       ]);
 
@@ -88,16 +68,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
         Logger.error("Failed to fetch personal data", results[0].reason);
       }
 
-      if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
-        setPlans(results[1].value);
-      } else {
-         Logger.warn("Failed to fetch plans or invalid format", results[1].status === 'rejected' ? results[1].reason : results[1].value);
-      }
+      setPlans(plansData);
 
-      if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) {
-        setProjects(results[2].value);
+      if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
+        setProjects(results[1].value);
       } else {
-         Logger.warn("Failed to fetch projects or invalid format", results[2].status === 'rejected' ? results[2].reason : results[2].value);
+         Logger.warn("Failed to fetch projects or invalid format", results[1].status === 'rejected' ? results[1].reason : results[1].value);
       }
 
     } catch (error) {

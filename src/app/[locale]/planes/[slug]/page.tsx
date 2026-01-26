@@ -1,69 +1,34 @@
 import PlanChatTrigger from "@/components/PlanChatTrigger";
 import ThemeGate from "@/components/ThemeGate";
-import { API_URL } from "@/config";
+import { Plan, plans } from "@/data/plans";
 import { Link } from "@/navigation";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+async function getPlan(slug: string): Promise<Plan | null> {
+  return plans.find((p) => p.slug === slug) || null;
+}
+
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
-
-
-interface Plan {
-  id: number;
-  name: string;
-  slug: string;
-  tagline: string;
-  description: string;
-  detailedDescription: string;
-  price: number;
-  features: string[];
-  whatYouGet: { title: string; description: string }[];
-  useCases: string[];
-  management: { title: string; description: string }[];
-  considerations: string[];
-  recommendations: string[];
-  demos: { name: string; url: string; category: string }[];
-  popular: boolean;
-}
-
-
-
-async function getPlan(slug: string): Promise<Plan | null> {
-  try {
-    const res = await fetch(`${API_URL}/api/content/plans`);
-    if (!res.ok) return null;
-    const plans: Plan[] = await res.json();
-    return plans.find((p) => p.slug === slug) || null;
-  } catch (error) {
-    console.error("Error fetching plan:", error);
-    return null;
-  }
-}
-
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const plan = await getPlan(params.slug);
+  const { slug } = await params;
+  const plan = await getPlan(slug);
   if (!plan) return { title: "Plan No Encontrado" };
   return { title: `Plan ${plan.name} - TuWebIdeal`, description: plan.tagline };
 }
 
 export async function generateStaticParams() {
-  try {
-    const res = await fetch(`${API_URL}/api/content/plans`);
-    if (!res.ok) return [];
-    const plans: Plan[] = await res.json();
-    return plans.map((plan) => ({ slug: plan.slug }));
-  } catch {
-    return [];
-  }
+  return plans.map((plan) => ({ slug: plan.slug }));
 }
 
 export default async function PlanPage({ params }: Props) {
-  const plan = await getPlan(params.slug);
+  const { slug } = await params;
+  const plan = await getPlan(slug);
   if (!plan) notFound(); 
 
   const t = await getTranslations("PlanDetails");
