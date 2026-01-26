@@ -11,14 +11,27 @@ import { API_URL } from "@/config";
 export const dynamic = "force-dynamic";
 
 async function getPlan(slug: string): Promise<Plan | null> {
+  if (!API_URL) {
+    console.error("API_URL is not defined in environment variables");
+    return null;
+  }
+
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); 
+
+    console.log(`Fetching plan for slug: ${slug} from ${API_URL}`);
+    
     const res = await fetch(`${API_URL}/api/content/plans`, { 
-      cache: 'no-store', 
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      signal: controller.signal
     });
     
+    clearTimeout(timeoutId);
+
     if (!res.ok) {
       console.error(`Failed to fetch plans: ${res.status}`);
       return null;

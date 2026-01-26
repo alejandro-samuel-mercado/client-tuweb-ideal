@@ -57,10 +57,23 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const fetchData = async () => {
     setLoading(true);
     try {
+      const fetchWithTimeout = async (url: string) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 8000);
+        try {
+          const res = await fetch(url, { signal: controller.signal });
+          clearTimeout(id);
+          return res.json();
+        } catch (error) {
+           clearTimeout(id);
+           throw error;
+        }
+      };
+
       const results = await Promise.allSettled([
-        fetch(`${API_URL}/api/settings/personal-data`).then(res => res.json()),
-        fetch(`${API_URL}/api/content/example-projects`).then(res => res.json()),
-        fetch(`${API_URL}/api/content/plans`).then(res => res.json()),
+        fetchWithTimeout(`${API_URL}/api/settings/personal-data`),
+        fetchWithTimeout(`${API_URL}/api/content/example-projects`),
+        fetchWithTimeout(`${API_URL}/api/content/plans`),
       ]);
 
       if (results[0].status === 'fulfilled') {
@@ -78,13 +91,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }
 
       if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) {
-        // Merge backend plans with local plans (prefer backend if ID matches, or just append?)
-        // For now, let's just log or set if we want backend source of truth.
-        // Assuming we want to prioritize backend plans if available:
+       
         setPlans((prev) => {
             const backendPlans = results[2].status === 'fulfilled' ? results[2].value : [];
-            // Strategy: Use backend plans if available, falling back to local for static. 
-            // Since this is client side, we can overwrite with backend plans.
+          
             return backendPlans.length > 0 ? backendPlans : prev;
         });
       }
