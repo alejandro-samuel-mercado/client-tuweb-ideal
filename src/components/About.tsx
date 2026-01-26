@@ -47,8 +47,8 @@ export default function About() {
 
   return (
     <section id="nosotros" className="py-32 px-6 bg-background relative border-t border-foreground/5">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background decorations*/}
+      <div className="absolute top-0 left-0 w-[auto] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none bg-red-500" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10 max-w-6xl">
