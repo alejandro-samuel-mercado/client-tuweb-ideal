@@ -7,6 +7,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import MusicPlayer from "@/components/MusicPlayer";
+import WelcomeModal from "@/components/WelcomeModal";
+import { DataProvider } from '@/context/DataContext';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+
+
 const inter = Inter({
   variable: "--font-inter-custom",
   subsets: ["latin"],
@@ -28,12 +36,6 @@ export const metadata: Metadata = {
   },
 };
 
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import MusicPlayer from "@/components/MusicPlayer";
-import WelcomeModal from "@/components/WelcomeModal";
-import { DataProvider } from '@/context/DataContext';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 
 export default async function RootLayout({
   children,
