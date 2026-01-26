@@ -1,8 +1,8 @@
 "use client";
 
 import { API_URL } from "@/config";
-import { Plan, plans as plansData } from "@/data/plans";
 import Logger from "@/lib/logger";
+import { Plan } from "@/data/plans";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 interface PersonalData {
@@ -59,7 +59,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
     try {
       const results = await Promise.allSettled([
         fetch(`${API_URL}/api/settings/personal-data`).then(res => res.json()),
-        fetch(`${API_URL}/api/content/example-projects`).then(res => res.json())
+        fetch(`${API_URL}/api/content/example-projects`).then(res => res.json()),
+        fetch(`${API_URL}/api/content/plans`).then(res => res.json()),
       ]);
 
       if (results[0].status === 'fulfilled') {
@@ -68,7 +69,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
         Logger.error("Failed to fetch personal data", results[0].reason);
       }
 
-      setPlans(plansData);
+  
 
       if (results[1].status === 'fulfilled' && Array.isArray(results[1].value)) {
         setProjects(results[1].value);
