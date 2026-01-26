@@ -1,27 +1,23 @@
 "use client";
 
 import { useChat } from "@/context/ChatContext";
-import { Plan, plans as plansData } from "@/data/plans";
+import { useData } from "@/context/DataContext";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaCheckCircle, FaInfoCircle, FaRobot } from "react-icons/fa";
 
 
 export default function Plans() {
   const { openChatWithIntent } = useChat();
-  const [plans, setPlans] = useState<Plan[]>([]);
+const { plans } = useData();
   const [loading, setLoading] = useState(true);
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
   const t = useTranslations("Plans");
   const locale = useLocale();
 
-  useEffect(() => {
-    // Simulating delay for smooth hydration
-    setPlans(plansData);
-    setLoading(false);
-  }, []);
+
 
   const getFeatureDescription = (feature: string) => {
     const lower = feature.toLowerCase();

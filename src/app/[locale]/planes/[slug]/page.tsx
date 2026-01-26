@@ -1,12 +1,14 @@
 import PlanChatTrigger from "@/components/PlanChatTrigger";
 import ThemeGate from "@/components/ThemeGate";
-import { Plan, plans } from "@/data/plans";
+import { useData } from "@/context/DataContext";
+import { Plan } from "@/data/plans";
 import { Link } from "@/navigation";
 import { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 async function getPlan(slug: string): Promise<Plan | null> {
+      const { plans } = useData();
   return plans.find((p) => p.slug === slug) || null;
 }
 
@@ -23,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
+      const { plans } = useData();
   return plans.map((plan) => ({ slug: plan.slug }));
 }
 
