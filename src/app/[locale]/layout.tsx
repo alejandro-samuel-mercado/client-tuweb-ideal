@@ -12,7 +12,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 import WelcomeModal from "@/components/WelcomeModal";
 import { DataProvider } from '@/context/DataContext';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 
 const inter = Inter({
@@ -45,6 +45,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 

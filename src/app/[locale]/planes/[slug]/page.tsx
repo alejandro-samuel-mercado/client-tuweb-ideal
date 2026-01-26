@@ -3,7 +3,7 @@ import ThemeGate from "@/components/ThemeGate";
 import { Plan, plans } from "@/data/plans";
 import { Link } from "@/navigation";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 async function getPlan(slug: string): Promise<Plan | null> {
@@ -12,7 +12,7 @@ async function getPlan(slug: string): Promise<Plan | null> {
 
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,7 +27,9 @@ export async function generateStaticParams() {
 }
 
 export default async function PlanPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+  
   const plan = await getPlan(slug);
   if (!plan) notFound(); 
 

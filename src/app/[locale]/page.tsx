@@ -4,7 +4,11 @@ import Marquee from "@/components/Marquee";
 import Plans from "@/components/Plans";
 import Reviews from "@/components/Reviews";
 
-export default function Home() {
+import { setRequestLocale } from "next-intl/server";
+
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <div className="flex flex-col gap-0">
       <Hero />
