@@ -1,7 +1,7 @@
 "use client";
 
 import { API_URL } from "@/config";
-import { Plan } from "@/data/plans";
+import { Plan, plans as plansData } from "@/data/plans";
 import Logger from "@/lib/logger";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
@@ -50,7 +50,7 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: ReactNode }) {
   const [personalData, setPersonalData] = useState<PersonalData | null>(null);
-  const [plans, setPlans] = useState<Plan[]>([]);
+  const [plans, setPlans] = useState<Plan[]>(plansData);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -91,10 +91,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
       }
 
       if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) {
-       
+        const backendPlans = results[2].value;
         setPlans((prev) => {
-            const backendPlans = results[2].status === 'fulfilled' ? results[2].value : [];
-          
             return backendPlans.length > 0 ? backendPlans : prev;
         });
       }

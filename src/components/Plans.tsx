@@ -11,8 +11,7 @@ import { FaCheckCircle, FaInfoCircle, FaRobot } from "react-icons/fa";
 
 export default function Plans() {
   const { openChatWithIntent } = useChat();
-const { plans } = useData();
-  const [loading, setLoading] = useState(true);
+  const { plans, loading } = useData();
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
   const t = useTranslations("Plans");
   const locale = useLocale();
