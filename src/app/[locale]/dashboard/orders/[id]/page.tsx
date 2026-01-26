@@ -533,17 +533,13 @@ export default function OrderDetailPage({
                       }`}
                     >
                       {msg.imageUrl && (
-                        <img
-                          src={`${API_URL}${msg.imageUrl}`}
-                          alt="Uploaded content"
-                          className="max-w-full rounded-lg mb-2 cursor-pointer hover:opacity-90 transition-opacity"
-                          onClick={() =>
-                            window.open(
-                              `${API_URL}${msg.imageUrl}`,
-                              "_blank"
-                            )
-                          }
-                        />
+                      <img
+  src={msg.imageUrl}
+  alt="Uploaded content"
+  className="max-w-full rounded-lg mb-2 cursor-pointer hover:opacity-90 transition-opacity"
+  onClick={() => window.open(msg.imageUrl, "_blank")}
+/>
+
                       )}
                       {msg.content && <p>{msg.content}</p>}
                     </div>
