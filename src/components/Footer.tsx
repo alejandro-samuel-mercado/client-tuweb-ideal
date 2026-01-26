@@ -142,8 +142,6 @@ export default function Footer() {
                 <FaMapMarkerAlt className="mt-1 text-primary shrink-0" />
                 <span>
                                    {personalData?.address ? `${personalData.address}` : ""} 
-
-                  <br />
                 </span>
               </li>
               <li>
