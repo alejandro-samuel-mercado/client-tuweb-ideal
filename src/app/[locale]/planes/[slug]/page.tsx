@@ -6,9 +6,11 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
+
 
 interface Plan {
   id: number;
@@ -28,6 +30,8 @@ interface Plan {
   popular: boolean;
 }
 
+
+
 async function getPlan(slug: string): Promise<Plan | null> {
   try {
     const res = await fetch(`${API_URL}/api/content/plans`);
@@ -40,20 +44,11 @@ async function getPlan(slug: string): Promise<Plan | null> {
   }
 }
 
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const plan = await getPlan(slug);
-
-  if (!plan) {
-    return {
-      title: "Plan No Encontrado",
-    };
-  }
-
-  return {
-    title: `Plan ${plan.name} - TuWebIdeal`,
-    description: plan.tagline,
-  };
+  const plan = await getPlan(params.slug);
+  if (!plan) return { title: "Plan No Encontrado" };
+  return { title: `Plan ${plan.name} - TuWebIdeal`, description: plan.tagline };
 }
 
 export async function generateStaticParams() {
@@ -61,23 +56,18 @@ export async function generateStaticParams() {
     const res = await fetch(`${API_URL}/api/content/plans`);
     if (!res.ok) return [];
     const plans: Plan[] = await res.json();
-    return plans.map((plan) => ({
-      slug: plan.slug,
-    }));
-  } catch (error) {
+    return plans.map((plan) => ({ slug: plan.slug }));
+  } catch {
     return [];
   }
 }
 
 export default async function PlanPage({ params }: Props) {
-  const { slug } = await params;
-  const plan = await getPlan(slug);
+  const plan = await getPlan(params.slug);
+  if (!plan) notFound(); 
+
   const t = await getTranslations("PlanDetails");
   const tNav = await getTranslations("Navbar");
-
-  if (!plan) {
-    notFound();
-  }
 
 
   return (
