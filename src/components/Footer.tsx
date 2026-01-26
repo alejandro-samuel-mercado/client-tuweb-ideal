@@ -141,7 +141,8 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-foreground/60">
                 <FaMapMarkerAlt className="mt-1 text-primary shrink-0" />
                 <span>
-                                   {personalData?.address ? `${personalData.address}` : ""} 
+                  {personalData?.address || "Dirección..."}
+                  
                 </span>
               </li>
               <li>
@@ -178,7 +179,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 text-sm text-foreground/50">
             <span>{t("made_with")}</span>
             <span className="text-red-500">UnixxTech</span>
-            <span>{t("for_entrepreneurs")}</span>
+          
           </div>
         </div>
       </div>
