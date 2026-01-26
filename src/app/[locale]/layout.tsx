@@ -4,16 +4,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 
+import DynamicGlobalComponents from "@/components/DynamicGlobalComponents";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { DataProvider } from '@/context/DataContext';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 
-const Background = dynamic(() => import("@/components/Background"), { ssr: false });
-const MusicPlayer = dynamic(() => import("@/components/MusicPlayer"), { ssr: false });
-const WelcomeModal = dynamic(() => import("@/components/WelcomeModal"), { ssr: false });
-const ChatAssistant = dynamic(() => import("@/components/ChatAssistant"), { ssr: false });
 const Footer = dynamic(() => import("@/components/Footer"));
 
 const inter = Inter({
@@ -57,14 +54,11 @@ export default async function RootLayout({
        
           <Providers>
             <DataProvider>
-            <Background />
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />
-            <ChatAssistant />
             <LanguageSwitcher />
-            <WelcomeModal />
-            <MusicPlayer />
+            <DynamicGlobalComponents />
             </DataProvider>
           </Providers>
         </NextIntlClientProvider>
