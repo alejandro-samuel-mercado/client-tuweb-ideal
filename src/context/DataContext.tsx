@@ -1,8 +1,8 @@
 "use client";
 
 import { API_URL } from "@/config";
-import Logger from "@/lib/logger";
 import { Plan } from "@/data/plans";
+import Logger from "@/lib/logger";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 interface PersonalData {
@@ -75,6 +75,18 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setProjects(results[1].value);
       } else {
          Logger.warn("Failed to fetch projects or invalid format", results[1].status === 'rejected' ? results[1].reason : results[1].value);
+      }
+
+      if (results[2].status === 'fulfilled' && Array.isArray(results[2].value)) {
+        // Merge backend plans with local plans (prefer backend if ID matches, or just append?)
+        // For now, let's just log or set if we want backend source of truth.
+        // Assuming we want to prioritize backend plans if available:
+        setPlans((prev) => {
+            const backendPlans = results[2].status === 'fulfilled' ? results[2].value : [];
+            // Strategy: Use backend plans if available, falling back to local for static. 
+            // Since this is client side, we can overwrite with backend plans.
+            return backendPlans.length > 0 ? backendPlans : prev;
+        });
       }
 
     } catch (error) {

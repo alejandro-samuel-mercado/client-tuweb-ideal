@@ -1,15 +1,35 @@
 import PlanChatTrigger from "@/components/PlanChatTrigger";
 import ThemeGate from "@/components/ThemeGate";
-import { useData } from "@/context/DataContext";
 import { Plan } from "@/data/plans";
 import { Link } from "@/navigation";
 import { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { API_URL } from "@/config";
+
+export const dynamic = "force-dynamic";
+
 async function getPlan(slug: string): Promise<Plan | null> {
-      const { plans } = useData();
-  return plans.find((p) => p.slug === slug) || null;
+  try {
+    const res = await fetch(`${API_URL}/api/content/plans`, { 
+      cache: 'no-store', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!res.ok) {
+      console.error(`Failed to fetch plans: ${res.status}`);
+      return null;
+    }
+    
+    const plans: Plan[] = await res.json();
+    return plans.find((p) => p.slug === slug) || null;
+  } catch (error) {
+    console.error("Error fetching plan from API:", error);
+    return null;
+  }
 }
 
 
@@ -24,10 +44,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `Plan ${plan.name} - TuWebIdeal`, description: plan.tagline };
 }
 
-export async function generateStaticParams() {
-      const { plans } = useData();
-  return plans.map((plan) => ({ slug: plan.slug }));
-}
 
 export default async function PlanPage({ params }: Props) {
   const { slug, locale } = await params;
