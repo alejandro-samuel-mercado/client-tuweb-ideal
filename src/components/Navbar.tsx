@@ -73,7 +73,7 @@ export default function Navbar() {
     return false;
   };
   
-  const glassContainer = "glass shadow-lg backdrop-blur-md border border-[var(--card-border)] bg-[var(--navbar-bg)]";
+  const glassContainer = "glass shadow-lg backdrop-blur-md border border-border bg-background/50";
 
   return (
     <nav
@@ -82,7 +82,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
-        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg borderborder-white/10 rounded-full px-6 py-2 shadow-lg" : ""}`}>
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg border border-border rounded-full px-6 py-2 shadow-lg" : ""}`}>
             
         {/* Logo - Left */}
         <Link href="/" className="flex items-center gap-2 group relative z-50 shrink-0">
@@ -233,7 +233,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-20 left-4 right-4 p-6 rounded-3xl flex flex-col gap-4 md:hidden bg-[#0a0a0f]/95 backdrop-blur-2xl border border-white/10 shadow-2xl z-40 origin-top`}
+            className={`absolute top-20 left-4 right-4 p-6 rounded-3xl flex flex-col gap-4 md:hidden bg-background/95 backdrop-blur-2xl border border-border shadow-2xl z-40 origin-top`}
           >
             {navLinks.map((link) => (
               <Link
