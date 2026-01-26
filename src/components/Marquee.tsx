@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaAws, FaDocker, FaGoogle, FaNodeJs, FaReact, FaStripe } from "react-icons/fa";
 import { SiFirebase, SiMongodb, SiNextdotjs, SiPostgresql, SiTailwindcss, SiTypescript } from "react-icons/si";
 
@@ -20,22 +20,24 @@ const logos = [
 ];
 
 export default function Marquee() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className="py-10 bg-trasparent overflow-hidden relative">
+    <div className="py-10 bg-trasparent overflow-hidden relative transform-gpu">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         
       <div className="flex w-full">
         <motion.div
-          className="flex gap-16 px-8 items-center"
-          animate={{ x: ["0%", "-50%"] }}
+          className="flex gap-16 px-8 items-center will-change-transform"
+          animate={shouldReduceMotion ? {} : { x: ["0%", "-50%"] }}
           transition={{
-            duration: 30,
+            duration: 60, 
             ease: "linear",
             repeat: Infinity,
           }}
         >
-          {[...logos, ...logos, ...logos].map((logo, idx) => (
+          {[...logos, ...logos, ...logos, ...logos].map((logo, idx) => (
             <div key={idx} className="flex flex-col items-center gap-2 group cursor-default">
               <div className="text-4xl text-foreground/20 group-hover:text-primary transition-colors duration-300 transform group-hover:scale-110">
                 {logo.icon}
@@ -50,3 +52,4 @@ export default function Marquee() {
     </div>
   );
 }
+

@@ -14,7 +14,7 @@ const PLAYLIST = [
   {
     title: "Creative Focus",
     artist: "Ambient",
-    url: "/music.mp3",
+    url: "/music.mp3", 
   },
 ];
 
@@ -24,6 +24,7 @@ export default function MusicPlayer() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement>(null);
   
@@ -32,12 +33,20 @@ export default function MusicPlayer() {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => Logger.info("Autoplay prevented:", e));
+        if (hasInteracted) {
+             const playPromise = audioRef.current.play();
+             if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                    Logger.info("Autoplay prevented or interrupted:", e);
+                    setIsPlaying(false);
+                });
+             }
+        }
       } else {
         audioRef.current.pause();
       }
     }
-  }, [isPlaying, currentTrackIndex]);
+  }, [isPlaying, currentTrackIndex, hasInteracted]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -63,7 +72,10 @@ export default function MusicPlayer() {
   }, []);
 
 
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const togglePlay = () => {
+      setHasInteracted(true);
+      setIsPlaying(!isPlaying);
+  };
   
   const toggleMute = () => {
     if (audioRef.current) {
@@ -75,11 +87,33 @@ export default function MusicPlayer() {
   const handleNext = () => {
     setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
     setProgress(0);
+    if(isPlaying) {
+         if (audioRef.current) {
+            audioRef.current.currentTime = 0;
+            const playPromise = audioRef.current.play();
+             if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                     Logger.info("Play on next track prevented:", e);
+                });
+             }
+         }
+    }
   };
 
   const handlePrev = () => {
     setCurrentTrackIndex((prev) => (prev - 1 + PLAYLIST.length) % PLAYLIST.length);
     setProgress(0);
+      if(isPlaying) {
+         if (audioRef.current) {
+            audioRef.current.currentTime = 0;
+             const playPromise = audioRef.current.play();
+             if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                     Logger.info("Play on prev track prevented:", e);
+                });
+             }
+         }
+    }
   };
 
   return (
@@ -87,6 +121,7 @@ export default function MusicPlayer() {
       <audio 
         ref={audioRef}
         src={currentTrack.url}
+        preload="none" 
       />
 
       <AnimatePresence>
@@ -101,19 +136,20 @@ export default function MusicPlayer() {
             <div className="relative w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0 overflow-hidden">
                 {isPlaying ? (
                     <div className="flex items-end gap-1 h-6">
+                        {/* Simplified Visualizer */}
                         <motion.div 
-                            animate={{ height: ["20%", "80%", "40%"] }} 
-                            transition={{ repeat: Infinity, duration: 0.5 }} 
+                            animate={{ height: ["40%", "100%", "40%"] }} 
+                            transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }} 
                             className="w-1 bg-white" 
                         />
-                        <motion.div 
-                            animate={{ height: ["40%", "100%", "20%"] }} 
-                            transition={{ repeat: Infinity, duration: 0.7 }} 
+                         <motion.div 
+                            animate={{ height: ["30%", "80%", "30%"] }} 
+                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear", delay: 0.2 }} 
                             className="w-1 bg-white" 
                         />
-                        <motion.div 
-                            animate={{ height: ["30%", "60%", "30%"] }} 
-                            transition={{ repeat: Infinity, duration: 0.6 }} 
+                         <motion.div 
+                            animate={{ height: ["50%", "90%", "50%"] }} 
+                            transition={{ repeat: Infinity, duration: 1, ease: "linear", delay: 0.1 }} 
                             className="w-1 bg-white" 
                         />
                     </div>
@@ -134,27 +170,29 @@ export default function MusicPlayer() {
                         <motion.div 
                             className="h-full bg-primary"
                             style={{ width: `${progress}%` }}
+                            layoutId="progressBar" 
                         />
                     </div>
                 </div>
                 
                 <div className="flex items-center gap-3">
-                    <button onClick={handlePrev} className="text-white/60 hover:text-white transition-colors">
+                    <button onClick={handlePrev} className="text-white/60 hover:text-white transition-colors" aria-label="Previous Track">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
                     </button>
                     <button 
                         onClick={togglePlay}
                         className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg shadow-primary/30"
+                        aria-label={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? <FaPause className="text-xs" /> : <FaPlay className="text-xs ml-0.5" />}
                     </button>
-                    <button onClick={handleNext} className="text-white/60 hover:text-white transition-colors">
+                    <button onClick={handleNext} className="text-white/60 hover:text-white transition-colors" aria-label="Next Track">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                     </button>
                     
                     <div className="w-px h-4 bg-white/10 mx-1" />
                     
-                    <button onClick={toggleMute} className="text-white/60 hover:text-white transition-colors">
+                    <button onClick={toggleMute} className="text-white/60 hover:text-white transition-colors" aria-label={isMuted ? "Unmute" : "Mute"}>
                         {isMuted ? <FaVolumeMute className="text-xs" /> : <FaVolumeUp className="text-xs" />}
                     </button>
                 </div>
@@ -167,9 +205,11 @@ export default function MusicPlayer() {
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg border border-white/10 transition-all duration-300 hover:scale-110 z-50 ${isExpanded ? 'bg-primary text-white' : 'bg-[#0a0a0f]/80 text-primary backdrop-blur-md'}`}
+        aria-label="Toggle Music Player"
       >
         <FaMusic className={`text-xl ${isPlaying ? 'animate-pulse' : ''}`} />
       </button>
     </div>
   );
 }
+

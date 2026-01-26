@@ -1,6 +1,3 @@
-import Background from "@/components/Background";
-import ChatAssistant from "@/components/ChatAssistant";
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Providers } from "@/context/Providers";
 import type { Metadata } from "next";
@@ -8,12 +5,16 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import MusicPlayer from "@/components/MusicPlayer";
-import WelcomeModal from "@/components/WelcomeModal";
 import { DataProvider } from '@/context/DataContext';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+import dynamic from 'next/dynamic';
 
+const Background = dynamic(() => import("@/components/Background"), { ssr: false });
+const MusicPlayer = dynamic(() => import("@/components/MusicPlayer"), { ssr: false });
+const WelcomeModal = dynamic(() => import("@/components/WelcomeModal"), { ssr: false });
+const ChatAssistant = dynamic(() => import("@/components/ChatAssistant"), { ssr: false });
+const Footer = dynamic(() => import("@/components/Footer"));
 
 const inter = Inter({
   variable: "--font-inter-custom",

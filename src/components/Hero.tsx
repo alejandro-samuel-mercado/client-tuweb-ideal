@@ -1,12 +1,24 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaBolt, FaLaptopCode, FaPaintBrush, FaShieldAlt } from "react-icons/fa";
 import { IoRocketSharp } from "react-icons/io5";
 
 export default function Hero() {
   const t = useTranslations("Hero");
+  const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const scrollToPlanes = () => {
     const element = document.getElementById("planes");
@@ -42,16 +54,18 @@ export default function Hero() {
     },
   };
 
-  const particles = Array.from({ length: 20 });
+  const particleCount = isMobile ? 5 : 20;
+  const particles = Array.from({ length: particleCount });
   const waves = Array.from({ length: 3 });
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
       
       {/* Decorative Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none transform-gpu" />
 
       {/* Hero Particles */}
+      {!shouldReduceMotion && (
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((_, i) => (
           <motion.div
@@ -71,10 +85,11 @@ export default function Hero() {
               ease: "linear",
               delay: Math.random() * 5,
             }}
-            className="absolute w-1 h-1 bg-primary rounded-full"
+            className="absolute w-1 h-1 bg-primary rounded-full will-change-transform"
           />
         ))}
       </div>
+      )}
 
        {/* Moving Waves */}
        <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none transform translate-y-[1px] w-full z-20">
@@ -89,10 +104,10 @@ export default function Hero() {
                 fill="none"
                 stroke="currentColor" 
                 strokeWidth={2 + i}
-                className="text-primary/30 dark:text-primary/20"
+                className="text-primary/30 dark:text-primary/20 will-change-transform"
                 d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128"
-                initial={{ pathLength: 0, x: -100 }}
-                animate={{ 
+                initial={shouldReduceMotion ? {} : { pathLength: 0, x: -100 }}
+                animate={shouldReduceMotion ? {} : { 
                     x: [0, -100, 0],
                     d: [
                       "M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128",
@@ -103,7 +118,7 @@ export default function Hero() {
                 transition={{
                     duration: 15 + i * 5,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "linear", 
                 }}
                 style={{ opacity: 0.3 + i * 0.1, y: i * 15 }}
             />
@@ -188,3 +203,4 @@ export default function Hero() {
     </section>
   );
 }
+
