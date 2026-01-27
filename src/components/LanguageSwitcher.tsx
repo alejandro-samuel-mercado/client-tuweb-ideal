@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
       onClick={toggleLanguage}
       disabled={isPending}
       className={`
-        fixed top-6 max-md:top-17 max-md:right-4 right-6 z-50 
+        fixed top-10 max-md:top-16 max-md:right-4 right-6 z-50 
         px-4  py-3 max-md:px-2 max-md:py-2 rounded-full 
         font-bold text-lg max-md:text-sm shadow-lg backdrop-blur-md
         transition-all duration-300 hover:scale-110 active:scale-95
