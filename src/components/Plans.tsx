@@ -12,22 +12,8 @@ import { FaCheckCircle, FaInfoCircle, FaRobot } from "react-icons/fa";
 export default function Plans() {
     const { openChatWithIntent } = useChat();
     const { plans, loading } = useData();
-    const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
     const t = useTranslations("Plans");
     const locale = useLocale();
-
-
-
-    const getFeatureDescription = (feature: string) => {
-        const lower = feature.toLowerCase();
-        if (lower.includes("responsive")) return t("features_tooltip.responsive");
-        if (lower.includes("hosting")) return t("features_tooltip.hosting");
-        if (lower.includes("ssl")) return t("features_tooltip.ssl");
-        if (lower.includes("seo")) return t("features_tooltip.seo");
-        if (lower.includes("dominio")) return t("features_tooltip.dominio");
-        if (lower.includes("soporte")) return t("features_tooltip.soporte");
-        return t("features_tooltip.default");
-    };
 
     if (loading) {
         return (
@@ -48,7 +34,7 @@ export default function Plans() {
     };
 
     return (
-        <section id="planes" className="py-32 px-20 relative overflow-hidden bg-secondary/10 ">
+        <section id="planes" className="py-32 px-8 md:px-20 sm:px-20  relative overflow-hidden bg-secondary/10 ">
             <div className="container mx-auto relative z-10 max-w-full">
                 {/* Header */}
                 <motion.div
@@ -74,7 +60,7 @@ export default function Plans() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20 justify-center "
                 >
                     {plans.filter(plan => locale === 'en' ? !!plan.description_en : !!plan.description).map((plan) => (
                         <motion.div
@@ -122,13 +108,32 @@ export default function Plans() {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 flex items-center justify-center gap-2">
+                                <div className="mt-4 flex items-center justify-center gap-2 mb-6">
                                     <div className="h-px flex-1 bg-foreground/5"></div>
                                     <div className="text-[18px] font-bold text-primary  whitespace-nowrap bg-background/50 px-3 py-1 rounded-full border border-foreground/10">
                                         + ${plan.monthlyPrice}/mes
                                     </div>
                                     <div className="h-px flex-1 bg-foreground/5"></div>
                                 </div>
+
+                                {/* Ideal For Tags */}
+                                {plan.useCases && plan.useCases.length > 0 && (
+                                    <div className="mb-6">
+                                        <div className="text-[10px] font-bold uppercase tracking-widest text-foreground/40 mb-2">Ideal Para:</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {plan.useCases.slice(0, 3).map((uc: string, i: number) => (
+                                                <span key={i} className="px-2 py-1 bg-secondary/10 text-secondary border border-secondary/20 text-[10px] font-bold rounded-lg truncate max-w-[120px]" title={uc}>
+                                                    {uc}
+                                                </span>
+                                            ))}
+                                            {plan.useCases.length > 3 && (
+                                                <span className="px-2 py-1 bg-foreground/5 text-foreground/50 text-[10px] font-bold rounded-lg">
+                                                    +{plan.useCases.length - 3}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Features List */}
@@ -136,23 +141,14 @@ export default function Plans() {
                                 {plan.features.slice(0, 8).map((feature, idx) => (
                                     <li
                                         key={idx}
-                                        className="flex items-start gap-3 text-[13px] text-foreground/70 relative group/feature leading-snug"
-                                        onMouseEnter={() => setHoveredFeature(`${plan.id}-${idx}`)}
-                                        onMouseLeave={() => setHoveredFeature(null)}
+                                        className="flex items-start gap-3 text-[13px] text-foreground/70 relative leading-snug"
                                     >
-                                        <div className="mt-1 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover/feature:bg-primary/20 transition-colors">
+                                        <div className="mt-1 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 transition-colors">
                                             <FaCheckCircle className="text-[10px] text-primary" />
                                         </div>
-                                        <span className="cursor-help transition-colors group-hover/feature:text-foreground">
+                                        <span className="transition-colors">
                                             {feature}
                                         </span>
-
-                                        {/* Tooltip con diseño premium */}
-                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 w-52 p-4 bg-background/95 border border-foreground/10 rounded-2xl shadow-2xl text-[11px] text-foreground/80 opacity-0 group-hover/feature:opacity-100 transition-all duration-300 pointer-events-none z-50 backdrop-blur-xl scale-95 group-hover/feature:scale-100 origin-bottom">
-                                            <div className="font-bold text-primary mb-1 uppercase tracking-tighter">Info</div>
-                                            {getFeatureDescription(feature)}
-                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-6 border-transparent border-t-background/95"></div>
-                                        </div>
                                     </li>
                                 ))}
                             </ul>

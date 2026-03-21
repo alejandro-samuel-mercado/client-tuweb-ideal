@@ -21,6 +21,7 @@ export interface Plan {
   demos: { name: string; url: string; category: string }[];
   popular: boolean;
   recommended?: boolean;
+  projects?: any[];
 }
 
 

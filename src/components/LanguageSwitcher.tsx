@@ -5,24 +5,24 @@ import { useLocale } from "next-intl";
 import { useTransition } from "react";
 
 export default function LanguageSwitcher() {
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+    const locale = useLocale();
+    const router = useRouter();
+    const pathname = usePathname();
+    const [isPending, startTransition] = useTransition();
 
-  const toggleLanguage = () => {
-    const nextLocale = locale === "es" ? "en" : "es";
-    
-    startTransition(() => {
-        router.replace(pathname, { locale: nextLocale });
-    });
-  };
+    const toggleLanguage = () => {
+        const nextLocale = locale === "es" ? "en" : "es";
 
-  return (
-    <button
-      onClick={toggleLanguage}
-      disabled={isPending}
-      className={`
+        startTransition(() => {
+            router.replace(pathname, { locale: nextLocale });
+        });
+    };
+
+    return (
+        <button
+            onClick={toggleLanguage}
+            disabled={isPending}
+            className={`
         fixed top-4 max-md:top-16 max-md:right-4 right-2 z-50 
         px-4  py-3 max-md:px-2 max-md:py-2 rounded-full 
         font-bold text-lg max-md:text-sm shadow-lg backdrop-blur-md
@@ -30,9 +30,9 @@ export default function LanguageSwitcher() {
         border border-white/10
         ${locale === 'es' ? 'bg-purple-600 text-black' : 'bg-blue-600 text-white'}
       `}
-      aria-label="Switch Language"
-    >
-      {locale === "es" ? "🇪🇸 " : "🇺🇸"}
-    </button>
-  );
+            aria-label="Switch Language"
+        >
+            {locale === "es" ? "🇦🇷" : "🇺🇸"}
+        </button>
+    );
 }

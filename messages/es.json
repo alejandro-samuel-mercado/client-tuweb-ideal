@@ -355,6 +355,11 @@
     "breadcrumb": "Planes",
     "popular": "Más Popular",
     "price_suffix": "USD / pago único",
+    "setup_fee_label": "Pago Inicial de Activación",
+    "month_label": "mes",
+    "links": {
+      "home": "Inicio"
+    },
     "buttons": {
       "hire": "Contratar Ahora",
       "compare": "Comparar Planes"
@@ -365,6 +370,15 @@
     "management": "Gestión del Sitio",
     "recommendations": "Recomendaciones",
     "considerations": "A tener en cuenta",
+    "monthly_includes": {
+      "title": "¿Qué incluye el abono mensual?",
+      "items": [
+        "Hosting premium ultrarrápido y renovación de Dominio",
+        "Certificado de seguridad SSL siempre activo",
+        "Modificaciones de contenido y soporte según plan",
+        "Copias de seguridad, actualizaciones y monitoreo 24/7"
+      ]
+    },
     "cta": {
       "title": "¿Listo para empezar?",
       "button": "Contratar Plan {name}",
