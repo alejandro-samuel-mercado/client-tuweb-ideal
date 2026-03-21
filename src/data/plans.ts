@@ -9,6 +9,9 @@ export interface Plan {
   detailedDescription: string;
   detailedDescription_en?: string;
   price: number;
+  setupPrice: number;
+  monthlyPrice: number;
+  price_detail?: string;
   features: string[];
   whatYouGet: { title: string; description: string }[];
   useCases: string[];
@@ -20,6 +23,7 @@ export interface Plan {
   recommended?: boolean;
 }
 
+
 export const plans: Plan[] = [
   {
     id: 1,
@@ -29,6 +33,8 @@ export const plans: Plan[] = [
     description: "Todo lo que necesitas para tener presencia en internet.",
     detailedDescription: "El plan Básico es la solución perfecta para quienes buscan iniciar su camino digital. Ofrece una landing page profesional, rápida y optimizada para dispositivos móviles.",
     price: 299,
+    setupPrice: 299,
+    monthlyPrice: 25,
     features: [
       "Landing Page One-Page",
       "Diseño Responsive",
@@ -90,6 +96,8 @@ export const plans: Plan[] = [
     description: "Sitio web multipágina con blog y optimización SEO avanzada.",
     detailedDescription: "El plan Profesional está diseñado para empresas establecidas que necesitan estructurar mejor su información. Incluye múltiples páginas, blog y herramientas de análisis.",
     price: 599,
+    setupPrice: 599,
+    monthlyPrice: 45,
     features: [
       "Hasta 5 Páginas",
       "Diseño Personalizado",
@@ -140,6 +148,8 @@ export const plans: Plan[] = [
     description: "Tienda en línea completa con carrito de compras y pasarela de pagos.",
     detailedDescription: "Vende las 24 horas del día con una tienda en línea robusta y segura. Gestiona productos, pedidos y clientes desde un solo lugar.",
     price: 999,
+    setupPrice: 999,
+    monthlyPrice: 85,
     features: [
       "Tienda Online Completa",
       "Catálogo de Productos",

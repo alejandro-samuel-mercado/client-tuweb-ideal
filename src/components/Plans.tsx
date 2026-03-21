@@ -74,65 +74,85 @@ export default function Plans() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20"
         >
           {plans.filter(plan => locale === 'en' ? !!plan.description_en : !!plan.description).map((plan) => (
             <motion.div
               key={plan.id}
               variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className={`relative flex flex-col bg-background/40 backdrop-blur-xl border rounded-3xl p-8 transition-all duration-300 ${
+              whileHover={{ y: -10, scale: 1.02 }}
+              className={`relative flex flex-col bg-background/30 backdrop-blur-2xl border rounded-[2.5rem] p-6 transition-all duration-500 group ${
                 plan.popular
-                  ? "border-primary/50 shadow-[0_0_50px_-10px_rgba(var(--primary-rgb),0.3)]"
-                  : "border-foreground/10 hover:border-foreground/20"
+                  ? "border-primary/40 shadow-[0_0_80px_-20px_rgba(var(--primary-rgb),0.25)]"
+                  : "border-foreground/5 hover:border-foreground/15"
               }`}
             >
-              {/* Popular Badge */}
+              {/* Premium Glow Effect */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-full text-center">
-                  <span className="bg-gradient-to-r from-primary to-secondary px-6 py-1.5 rounded-full text-sm font-bold text-white shadow-lg inline-block">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-[2.5rem] pointer-events-none" />
+              )}
+
+              {/* Popular/Featured Badge */}
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                  <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-x px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-xl inline-block border border-white/20">
                     {t("popular_badge")}
                   </span>
                 </div>
               )}
 
               {/* Plan Header */}
-              <div className="mb-8 text-center">
-                <h3 className="text-2xl font-bold text-foreground mb-2">
+              <div className="mb-8 relative">
+                <h3 className="text-xl font-black text-foreground mb-1 group-hover:gradient-text transition-all duration-500">
                   {plan.name}
                 </h3>
-                <p className="text-foreground/60 text-sm mb-6 h-10 line-clamp-2">
+                <p className="text-foreground/40 text-[11px] font-medium tracking-wide uppercase mb-6 line-clamp-1">
                   {locale === 'en' ? (plan.tagline_en || plan.tagline) : plan.tagline}
                 </p>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-5xl font-bold text-foreground tracking-tight">
-                    ${plan.price}
-                  </span>
-                  <span className="text-foreground/40 font-medium">USD</span>
+                
+                <div className="flex flex-col items-center gap-1 bg-foreground/5 rounded-3xl py-6 border border-foreground/5 group-hover:bg-foreground/10 transition-colors">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-bold text-foreground/40">$</span>
+                    <span className="text-5xl font-black text-foreground tracking-tighter">
+                      {plan.setupPrice}
+                    </span>
+                    <span className="text-xs font-bold text-foreground/30 ml-1">USD</span>
+                  </div>
+                  <div className="text-[10px] font-bold text-primary uppercase tracking-widest opacity-80">
+                    {t("setup_fee_label") || "Pago Inicial"}
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center justify-center gap-2">
+                   <div className="h-px flex-1 bg-foreground/5"></div>
+                   <div className="text-[11px] font-bold text-foreground/50 whitespace-nowrap bg-background/50 px-3 py-1 rounded-full border border-foreground/5">
+                      + ${plan.monthlyPrice}/mes
+                   </div>
+                   <div className="h-px flex-1 bg-foreground/5"></div>
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="h-px w-full bg-foreground/10 mb-8" />
-
-              {/* Features */}
-              <ul className="space-y-4 mb-8 flex-grow">
-                {plan.features.slice(0, 6).map((feature, idx) => (
+              {/* Features List */}
+              <ul className="space-y-3.5 mb-8 flex-grow">
+                {plan.features.slice(0, 8).map((feature, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-3 text-sm text-foreground/80 relative group/feature"
+                    className="flex items-start gap-3 text-[13px] text-foreground/70 relative group/feature leading-snug"
                     onMouseEnter={() => setHoveredFeature(`${plan.id}-${idx}`)}
                     onMouseLeave={() => setHoveredFeature(null)}
                   >
-                    <FaCheckCircle className="mt-1 text-primary flex-shrink-0" />
-                    <span className="cursor-help border-b border-dashed border-foreground/20 hover:border-primary transition-colors">
+                    <div className="mt-1 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover/feature:bg-primary/20 transition-colors">
+                       <FaCheckCircle className="text-[10px] text-primary" />
+                    </div>
+                    <span className="cursor-help transition-colors group-hover/feature:text-foreground">
                       {feature}
                     </span>
 
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-3 bg-secondary/90 border border-white/10 rounded-xl shadow-xl text-xs text-white opacity-0 group-hover/feature:opacity-100 transition-opacity pointer-events-none z-50 backdrop-blur-md">
+                    {/* Tooltip con diseño premium */}
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 w-52 p-4 bg-background/95 border border-foreground/10 rounded-2xl shadow-2xl text-[11px] text-foreground/80 opacity-0 group-hover/feature:opacity-100 transition-all duration-300 pointer-events-none z-50 backdrop-blur-xl scale-95 group-hover/feature:scale-100 origin-bottom">
+                      <div className="font-bold text-primary mb-1 uppercase tracking-tighter">Info</div>
                       {getFeatureDescription(feature)}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-secondary/90"></div>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-6 border-transparent border-t-background/95"></div>
                     </div>
                   </li>
                 ))}
@@ -141,10 +161,10 @@ export default function Plans() {
               {/* CTA Button */}
               <Link
                 href={`/planes/${plan.slug}`}
-                className={`w-full block text-center px-6 py-4 rounded-xl font-bold transition-all shadow-md ${
+                className={`w-full block text-center px-6 py-4 rounded-2xl font-black text-sm tracking-widest uppercase transition-all duration-300 shadow-lg ${
                   plan.popular
-                    ? "bg-foreground text-background hover:scale-105"
-                    : "bg-foreground/10 text-foreground hover:bg-foreground/20 border border-foreground/10"
+                    ? "bg-foreground text-background hover:shadow-primary/25 hover:-translate-y-1"
+                    : "bg-foreground/5 text-foreground hover:bg-foreground/10 border border-foreground/10 hover:-translate-y-1"
                 }`}
               >
                 {t("view_details")}
@@ -152,6 +172,7 @@ export default function Plans() {
             </motion.div>
           ))}
         </motion.div>
+
 
         {/* Bottom CTA with Chat Trigger */}
         <motion.div 

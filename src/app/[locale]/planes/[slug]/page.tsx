@@ -109,14 +109,31 @@ export default async function PlanPage({ params }: Props) {
             <p className="text-2xl text-foreground/80 mb-8 font-light leading-relaxed">
               {plan.tagline}
             </p>
-            <div className="flex items-baseline gap-2 mb-8">
-              <span className="text-6xl font-bold text-foreground">
-                ${plan.price}
-              </span>
-              <span className="text-xl text-foreground/60">
-                {t("price_suffix")}
-              </span>
+            <div className="bg-foreground/5 rounded-3xl p-8 border border-foreground/10 mb-8 inline-block">
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-sm font-bold text-foreground/40">$</span>
+                <span className="text-6xl font-black text-foreground tracking-tighter">
+                  {plan.setupPrice}
+                </span>
+                <span className="text-xl font-bold text-foreground/30">USD</span>
+              </div>
+              <div className="text-xs font-black text-primary uppercase tracking-[0.2em] mb-4">
+                {t("setup_fee_label") || "Pago Inicial de Activación"}
+              </div>
+              
+              <div className="flex items-center gap-3 py-3 px-4 bg-background/50 rounded-2xl border border-foreground/5">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-foreground/80 font-bold text-sm">
+                  + ${plan.monthlyPrice}/{t("month_label") || "mes"} de mantenimiento
+                </span>
+              </div>
+              {plan.price_detail && (
+                <p className="mt-4 text-[11px] text-foreground/40 font-medium italic">
+                  * {plan.price_detail}
+                </p>
+              )}
             </div>
+
             <p className="text-foreground/70 text-lg mb-10 leading-relaxed">
               {plan.detailedDescription}
             </p>
