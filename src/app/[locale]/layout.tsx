@@ -54,6 +54,7 @@ export default async function RootLayout({
 
                     <Providers>
                         <DataProvider>
+                            <LanguageSwitcher />
                             <Navbar />
                             <main className="min-h-screen">{children}</main>
                             <Footer />
