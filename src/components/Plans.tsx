@@ -48,7 +48,7 @@ export default function Plans() {
     };
 
     return (
-        <section id="planes" className="py-32 px-20 relative overflow-hidden bg-secondary/10">
+        <section id="planes" className="py-32 px-20 relative overflow-hidden bg-secondary/10 ">
             <div className="container mx-auto relative z-10 max-w-full">
                 {/* Header */}
                 <motion.div
@@ -74,7 +74,7 @@ export default function Plans() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-20"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20 overflow-x-auto"
                 >
                     {plans.filter(plan => locale === 'en' ? !!plan.description_en : !!plan.description).map((plan) => (
                         <motion.div
