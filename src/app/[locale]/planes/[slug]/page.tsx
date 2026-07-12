@@ -68,6 +68,20 @@ export default async function PlanPage({ params }: Props) {
     const t = await getTranslations("PlanDetails");
     const tNav = await getTranslations("Navbar");
 
+    // Robust fetch for associated projects in case plan.projects is missing or empty
+    let associatedProjects = plan.projects || [];
+    if (associatedProjects.length === 0 && API_URL) {
+        try {
+            const projRes = await fetch(`${API_URL}/api/content/example-projects`, { cache: 'no-store' });
+            if (projRes.ok) {
+                const allProj = await projRes.json();
+                associatedProjects = allProj.filter((p: any) => p.planId === plan.id);
+            }
+        } catch (error) {
+            console.error("Error fetching fallback example projects:", error);
+        }
+    }
+
 
     return (
         <ThemeGate>
@@ -324,13 +338,13 @@ export default async function PlanPage({ params }: Props) {
                     )}
 
                     {/* Example Projects Gallery */}
-                    {(plan.projects && plan.projects.length > 0) && (
+                    {(associatedProjects && associatedProjects.length > 0) && (
                         <div className="mb-24 animate-fade-in-up delay-500">
                             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center flex items-center justify-center gap-3">
                                 <span className="text-4xl">✨</span> Proyectos de Ejemplo
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {plan.projects.map((project: any, idx: number) => (
+                                {associatedProjects.map((project: any, idx: number) => (
                                     <div key={idx} className="glass-strong rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 group border border-foreground/10 shadow-lg">
                                         <div className="aspect-video relative overflow-hidden bg-foreground/5">
                                             {project.imageUrl && (

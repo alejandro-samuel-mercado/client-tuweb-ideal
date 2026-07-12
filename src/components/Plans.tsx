@@ -142,7 +142,7 @@ export default function Plans() {
                             {/* Delivery Time */}
                             {(locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime) && (
                                 <div className="text-center mb-6 text-sm font-semibold text-primary/80 bg-primary/10 py-2 rounded-lg">
-                                ⏳ {t("delivery_time") || "Entrega / Delivery"}: {locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime}
+                                ⏳ {locale === 'en' ? 'Delivery' : 'Entrega'}: {locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime}
                                 </div>
                             )}
 
