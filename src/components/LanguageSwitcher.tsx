@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
       `}
             aria-label="Switch Language"
         >
-            {locale === "es" ? "🇦🇷" : "🇺🇸"}
+            {locale === "es" ? "ES" : "EN"}
         </button>
     );
 }

@@ -132,14 +132,14 @@
     "stats": {
       "sites": { "number": "150+", "label": "Sitios Creados" },
       "clients": { "number": "98%", "label": "Clientes Satisfechos" },
-      "time": { "number": "2-4 sem", "label": "Tiempo Entrega" },
+      "time": { "number": "A definir", "label": "Tiempo Entrega" },
       "support": { "number": "24/7", "label": "Soporte Disponible" }
     },
     "why_us": {
       "title_start": "¿Por Qué",
       "title_highlight": "Elegirnos?",
       "reasons": {
-        "delivery": { "title": "Entrega Rápida", "desc": "Tu sitio web listo en 2-4 semanas. No esperarás meses." },
+        "delivery": { "title": "Entrega Rápida", "desc": ". No esperarás años. EL tiempo de entrega depende del plan." },
         "design": { "title": "Diseño Premium", "desc": "Diseños modernos que destacan, no plantillas genéricas." },
         "all_included": { "title": "Todo Incluido", "desc": "Hosting, SSL, mantenimiento y soporte. Sin sorpresas." },
         "mobile": { "title": "Mobile First", "desc": "Perfectos en móviles, donde está el 70% de tus clientes." },

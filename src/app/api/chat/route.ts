@@ -33,7 +33,7 @@ function findLocalResponse(message: string): string | null {
 
   // 4. DELIVERY TIME
   if (includesAny(lowerMsg, ["tiempo", "demora", "tardan", "entrega", "cuando esta"])) {
-    return "El tiempo de entrega depende del plan: Básico (3-5 días), Negocio (1-2 semanas), Tienda Online (2-4 semanas).";
+    return "El tiempo de entrega depende del plan";
   }
 
   // 5. HOSTING & DOMAINS

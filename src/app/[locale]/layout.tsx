@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 
 import DynamicGlobalComponents from "@/components/DynamicGlobalComponents";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { DataProvider } from '@/context/DataContext';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -54,7 +53,7 @@ export default async function RootLayout({
 
                     <Providers>
                         <DataProvider>
-                            <LanguageSwitcher />
+                            
                             <Navbar />
                             <main className="min-h-screen">{children}</main>
                             <Footer />

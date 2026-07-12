@@ -60,7 +60,7 @@ export default function Plans() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20 justify-center "
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 justify-center max-w-6xl mx-auto"
                 >
                     {plans.filter(plan => locale === 'en' ? !!plan.description_en : !!plan.description).map((plan) => (
                         <motion.div
@@ -99,7 +99,7 @@ export default function Plans() {
                                     <div className="flex items-baseline gap-1">
                                         <span className="text-sm font-bold text-foreground/40">$</span>
                                         <span className="text-5xl font-black text-foreground tracking-tighter">
-                                            {plan.setupPrice}
+                                            {plan.setupPrice || plan.price}
                                         </span>
                                         <span className="text-xs font-bold text-foreground/30 ml-1">USD</span>
                                     </div>
@@ -107,7 +107,8 @@ export default function Plans() {
                                         {t("setup_fee_label") || "Pago Inicial"}
                                     </div>
                                 </div>
-
+                                
+                                {plan.monthlyPrice !== null && plan.monthlyPrice !== undefined && (
                                 <div className="mt-4 flex items-center justify-center gap-2 mb-6">
                                     <div className="h-px flex-1 bg-foreground/5"></div>
                                     <div className="text-[18px] font-bold text-primary  whitespace-nowrap bg-background/50 px-3 py-1 rounded-full border border-foreground/10">
@@ -115,6 +116,7 @@ export default function Plans() {
                                     </div>
                                     <div className="h-px flex-1 bg-foreground/5"></div>
                                 </div>
+                                )}
 
                                 {/* Ideal For Tags */}
                                 {plan.useCases && plan.useCases.length > 0 && (
@@ -136,17 +138,26 @@ export default function Plans() {
                                 )}
                             </div>
 
+                            {/* Delivery Time */}
+                            {(locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime) && (
+                                <div className="text-center mb-6 text-sm font-semibold text-primary/80 bg-primary/10 py-2 rounded-lg">
+                                ⏳ {t("delivery_time") || "Entrega / Delivery"}: {locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime}
+                                </div>
+                            )}
+
                             {/* Features List */}
                             <ul className="space-y-3.5 mb-8 flex-grow">
-                                {plan.features.slice(0, 8).map((feature, idx) => (
+                                {plan.features.slice(0, 8).map((feature: string, idx: number) => (
                                     <li
                                         key={idx}
-                                        className="flex items-start gap-3 text-[13px] text-foreground/70 relative leading-snug"
+                                        className="flex items-start gap-3 text-[13px] text-foreground/70 relative leading-snug group/feature"
+                                        onMouseEnter={() => setHoveredFeature(`${plan.id}-${idx}`)}
+                                        onMouseLeave={() => setHoveredFeature(null)}
                                     >
                                         <div className="mt-1 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 transition-colors">
                                             <FaCheckCircle className="text-[10px] text-primary" />
                                         </div>
-                                        <span className="transition-colors">
+                                        <span className="cursor-help border-b border-dashed border-foreground/20 hover:border-primary transition-colors">
                                             {feature}
                                         </span>
                                     </li>

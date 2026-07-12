@@ -43,15 +43,6 @@ SERVICIOS:
    - Soporte prioritario 24/7.
    - Ideal para empresas con necesidades específicas.
 
-━━━━━━━━━━━━━━━━━━
-TIEMPOS Y PROCESO:
-━━━━━━━━━━━━━━━━━━
-- El tiempo de entrega depende del plan contratado.
-- Plan Básico: 3 a 5 días hábiles.
-- Plan Negocio: 1 a 2 semanas.
-- Tienda Online: 2 a 4 semanas.
-- Plan Empresarial: se define según alcance.
-- El proceso incluye análisis, diseño, desarrollo y entrega final.
 
 ━━━━━━━━━━━━━━━━━━
 PAGOS Y COSTOS:
@@ -99,11 +90,11 @@ export const FAQ_DATA = [
   // ===============================
   {
     q: "¿Cuánto tiempo tardan en entregar?",
-    a: "Depende del plan. El Plan Básico suele estar listo en 3-5 días hábiles. Proyectos más grandes pueden demorar entre 2 y 4 semanas."
+    a: "Depende del plan."
   },
-  { q: "cuanto tardan", a: "El tiempo depende del plan. Una web básica se entrega en pocos días." },
-  { q: "demora pagina web", a: "Una página web básica se entrega entre 3 y 5 días hábiles." },
-  { q: "cuando esta lista la web", a: "Depende del plan elegido. Te indicamos el plazo exacto antes de comenzar." },
+  { q: "cuanto tardan", a: "El tiempo depende del plan." },
+  { q: "demora pagina web", a: "El tiempo depende del plan." },
+  { q: "cuando esta lista la web", a: "El tiempo depende del plan." },
   { q: "tardan mucho", a: "No. La mayoría de los sitios básicos se entregan en menos de una semana." },
 
   // ===============================
