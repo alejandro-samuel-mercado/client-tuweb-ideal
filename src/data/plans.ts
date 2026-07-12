@@ -22,6 +22,8 @@ export interface Plan {
   popular: boolean;
   recommended?: boolean;
   projects?: any[];
+  deliveryTime?: string;
+  deliveryTime_en?: string;
 }
 
 
