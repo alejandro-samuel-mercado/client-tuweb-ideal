@@ -168,6 +168,16 @@ export default async function PlanPage({ params }: Props) {
                                     </p>
                                 )}
                             </div>
+                            
+                            {(locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime) && (
+                                <div className="inline-block w-full max-w-sm mb-10">
+                                    <div className="flex items-center justify-center gap-2 text-sm font-bold text-primary/90 bg-primary/10 py-3 px-6 rounded-2xl border border-primary/20 shadow-sm">
+                                        <span className="text-xl">⏳</span>
+                                        <span>{locale === 'en' ? 'Delivery Time' : 'Tiempo de Entrega'}:</span>
+                                        <span className="text-foreground">{locale === 'en' ? (plan.deliveryTime_en || plan.deliveryTime) : plan.deliveryTime}</span>
+                                    </div>
+                                </div>
+                            )}
 
                             <p className="text-foreground/70 text-lg mb-10 leading-relaxed">
                                 {plan.detailedDescription}
