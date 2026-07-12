@@ -14,6 +14,7 @@ export default function Plans() {
     const { plans, loading } = useData();
     const t = useTranslations("Plans");
     const locale = useLocale();
+    const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
 
     if (loading) {
         return (
