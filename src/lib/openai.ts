@@ -8,5 +8,5 @@ if (!apiKey) {
 }
 
 export const openai = new OpenAI({
-  apiKey: apiKey,
+  apiKey: apiKey || "dummy-key-for-build",
 });
