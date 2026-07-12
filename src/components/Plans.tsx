@@ -60,14 +60,14 @@ export default function Plans() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 justify-center max-w-6xl mx-auto"
+                    className="flex flex-wrap justify-center gap-6 mb-20 max-w-6xl mx-auto"
                 >
                     {plans.filter(plan => locale === 'en' ? !!plan.description_en : !!plan.description).map((plan) => (
                         <motion.div
                             key={plan.id}
                             variants={itemVariants}
                             whileHover={{ y: -10, scale: 1.02 }}
-                            className={`relative flex flex-col bg-background/30 backdrop-blur-2xl border rounded-[2.5rem] p-6 transition-all duration-500 group ${plan.popular
+                            className={`relative flex flex-col w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[400px] bg-background/30 backdrop-blur-2xl border rounded-[2.5rem] p-6 transition-all duration-500 group ${plan.popular
                                 ? "border-primary/40 shadow-[0_0_80px_-20px_rgba(var(--primary-rgb),0.25)]"
                                 : "border-foreground/5 hover:border-foreground/15"
                                 }`}
